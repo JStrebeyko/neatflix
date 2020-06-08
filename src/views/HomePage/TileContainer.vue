@@ -1,13 +1,14 @@
 <template>
-  <div class="tiles-conatainer">
+  <div class="tiles-container">
     <tile v-for="(entry, i) in entries" :key="i" :entry="entry"/>
   </div>
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import Tile from './Tile.vue';
 
-export default {
+export default Vue.extend({
   components: {
     Tile,
   },
@@ -16,11 +17,11 @@ export default {
       type: Array,
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
-.tiles-conatainer {
+.tiles-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -1,4 +1,7 @@
+type entryList = Array<{}>
+
 export interface Store {
-    showsList: Array<{}>;
+    entryPool: entryList;
     apiPageNum: number;
+    displayed: entryList;
 }

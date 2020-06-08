@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import HomePage from '../views/HomePage/index.vue';
-// import DetailsPage from '../views/DetailsPage/index.vue';
-
 
 Vue.use(VueRouter);
 

@@ -1,22 +1,22 @@
 const baseURL = 'http://api.tvmaze.com';
 
 /**
- * Showing tiles
+ * Get data from API, normalize if needed
+ * @param query is either a phrase searched or pagination
+ * @param isSearched determines the endpoint
+ * @returns a promise of data
  */
-export async function getShows(num: number): Promise<Response> {
-  const endpoint = `/shows?page=${num}`;
+async function getShows(query: number | string, isSearched = false): Promise<Response> {
+  const endpoint = isSearched ? `/search/shows?q=${query}` : `/shows?page=${query}`;
   const fetchPromise = fetch(baseURL + endpoint);
   return fetchPromise
     .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-      return data;
+    .then((rawData) => {
+      const normalizedData = isSearched
+        ? rawData.map((entry: {show: object }) => entry.show)
+        : rawData;
+      return normalizedData;
     });
 }
 
-/**
- * Searching
- */
-export function search(phrase: string): void {
-  console.log('duh', phrase);
-}
+export default getShows;

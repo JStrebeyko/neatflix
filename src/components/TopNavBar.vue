@@ -1,18 +1,29 @@
 <template>
   <nav>
     <h1>Neatflix</h1>
-    <input type="text" @input="onInput" />
+    <input type="text" placeholder="Search..." @change="onChange"/>
   </nav>
 </template>
 
 <script lang="ts">
-export default {
+import Vue from 'vue';
+import store from '@/store';
+
+export default Vue.extend({
   methods: {
-    onInput(e: KeyboardEvent) {
-      console.log(e);
+    onChange(e: InputEvent) {
+      const element = e.target as HTMLInputElement;
+      const phrase = element.value;
+      console.log('search for', element.value);
+      if (phrase) {
+        store.dispatch('search', phrase);
+      } else {
+        store.commit('SHOW_POOL');
+      }
+      // this.$router.push(`/search/${phrase}`);
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

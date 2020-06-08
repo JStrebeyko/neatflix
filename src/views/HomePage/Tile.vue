@@ -5,10 +5,9 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 
-export default {
-  components: {
-  },
+export default Vue.extend({
   props: {
     entry: {
       type: Object,
@@ -16,10 +15,10 @@ export default {
   },
   computed: {
     imgURL(): string {
-      return `url(${this.entry.image.medium})`;
+      return this.entry.image ? `url(${this.entry.image.medium})` : 'none';
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
@@ -27,5 +26,6 @@ export default {
   height: 100px;
   width: 100px;
   display: block;
+  background: rgb(119, 7, 7)
 }
 </style>
