@@ -32,6 +32,7 @@ nav {
   display: flex;
   justify-content: space-between;
   position: sticky;
+  top: 0;
   padding: 0 5%;
   & h1 {
     color: rgb(180, 0, 0);

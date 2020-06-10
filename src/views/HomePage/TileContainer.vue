@@ -25,5 +25,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgb(139, 19, 19);
 }
 </style>
