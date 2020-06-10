@@ -10,7 +10,6 @@ const store: StoreOptions<Store> = {
     entryPool: [],
     displayed: [],
     apiPageNum: 0,
-    viewedID: undefined,
   },
   mutations: {
     ADD_TO_POOL(state, showsToAdd): void {
