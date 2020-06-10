@@ -8,8 +8,9 @@ Vue.use(Vuex);
 const store: StoreOptions<Store> = {
   state: {
     entryPool: [],
-    apiPageNum: 1,
     displayed: [],
+    apiPageNum: 0,
+    viewedID: undefined,
   },
   mutations: {
     ADD_TO_POOL(state, showsToAdd): void {
@@ -27,19 +28,16 @@ const store: StoreOptions<Store> = {
   },
   actions: {
     addToShowsList({ commit, state }): void {
-      api(state.apiPageNum).then((data: any) => {
+      api.fetchBatch(state.apiPageNum).then((data: any) => {
         commit('ADD_TO_POOL', data);
         commit('SHOW_POOL');
         commit('INCREMENT_API_PAGE_NUMBER');
       });
     },
     search({ commit }, phrase): void {
-      api(phrase, true).then((data: any) => {
+      api.fetchSearched(phrase).then((data: any) => {
         commit('SHOW_RESULTS', data);
       });
-    },
-    exitSearch({ commit }): void {
-      commit('CLEAR_SEARCH_QUERY');
     },
   },
 };
