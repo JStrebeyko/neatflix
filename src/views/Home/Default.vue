@@ -1,28 +1,29 @@
 <template>
-  <div class="home-page">
-    <top-nav-bar />
+  <div class="content-container">
     <tile-container v-if="displayed.length" :entries="displayed"/>
-    <h2 v-else>No shows found :( </h2>
   </div>
 </template>
 
 <script lang="ts">
-import TopNavBar from '@/components/TopNavBar.vue';
 import Vue from 'vue';
 import store from '@/store';
+import TileContainer from '@/components/TileContainer.vue';
 import { mapState } from 'vuex';
-import TileContainer from './TileContainer.vue';
 
 export default Vue.extend({
-  name: 'Home',
+  name: 'DefaultShows',
   components: {
     TileContainer,
-    TopNavBar,
   },
-  created() {
-    store.dispatch('addToShowsList');
+  created(): void {
+    store.commit('SHOW_POOL');
+    if (!this.displayed.length) {
+      store.dispatch('addToShowsList');
+    }
   },
-  computed: mapState(['displayed']),
+  computed: {
+    ...mapState(['displayed']),
+  },
 });
 </script>
 

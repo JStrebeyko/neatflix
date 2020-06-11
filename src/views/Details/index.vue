@@ -1,6 +1,6 @@
 <template>
   <div class="details" v-if="entry.name">
-    <router-link to="/">back</router-link>
+    <a @click="$router.go(-1)">back</a>
     <h1>{{entry.name}}</h1>
     <span>{{entry.premiered}}</span>
     <h2>Cast</h2>

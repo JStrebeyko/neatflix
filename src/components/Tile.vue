@@ -9,7 +9,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import store from '@/store';
 
 export default Vue.extend({
   props: {
@@ -31,7 +30,7 @@ export default Vue.extend({
 <style lang="scss">
 .tile {
   display: block;
-  height: 200px;
+  height: 300px;
   width: 200px;
   margin: 1vw;
   background: rgb(119, 7, 7)

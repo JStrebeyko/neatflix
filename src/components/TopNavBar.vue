@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <h1>Neatflix</h1>
+    <router-link to="/"><h1>Neatflix</h1></router-link>
     <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
     <button class="clear" @click="clearSearch">×</button>
   </nav>
@@ -19,14 +19,14 @@ export default Vue.extend({
   methods: {
     onChange() {
       if (this.phrase) {
-        store.dispatch('search', this.phrase);
+        this.$router.push(`/search/${this.phrase}`);
       } else {
-        store.commit('SHOW_POOL');
+        this.$router.push('/');
       }
     },
     clearSearch() {
       this.phrase = '';
-      store.commit('SHOW_POOL');
+      this.$router.push('/');
     },
   },
 });
