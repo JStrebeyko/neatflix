@@ -26,7 +26,7 @@ export default Vue.extend({
 <style lang="scss">
 .content {
   min-height: 100vh;
-  background-color: rgb(139, 19, 19);
+  background-color: rgb(44, 6, 6);
   & .tiles-container {
     display: flex;
     flex-direction: row;
