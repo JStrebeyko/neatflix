@@ -25,7 +25,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapState(['displayed']),
-    phrase() {
+    phrase(): string {
       return this.$route.params.phrase;
     },
   },

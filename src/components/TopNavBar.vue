@@ -1,14 +1,15 @@
 <template>
   <nav>
     <router-link to="/"><h1>Neatflix</h1></router-link>
-    <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
-    <button class="clear" @click="clearSearch">×</button>
+    <div class="inputs">
+      <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
+      <button class="clear" @click="clearSearch" v-if="phrase">×</button>
+    </div>
   </nav>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import store from '@/store';
 
 export default Vue.extend({
   data() {
@@ -40,10 +41,16 @@ nav {
   position: sticky;
   top: 0;
   padding: 0 5%;
+  z-index: 10;
   & h1 {
     color: rgb(180, 0, 0);
     letter-spacing: 1px;
     font-size: 2rem;
+  }
+  & .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
