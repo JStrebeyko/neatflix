@@ -1,11 +1,19 @@
 <template>
   <div id="app">
+    <top-nav-bar />
     <router-view/>
   </div>
 </template>
 
 <script lang="ts">
-export default {};
+import TopNavBar from '@/components/TopNavBar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    TopNavBar,
+  },
+};
 </script>
 
 <style lang="scss">
