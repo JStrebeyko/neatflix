@@ -1,7 +1,8 @@
 <template>
   <nav>
     <h1>Neatflix</h1>
-    <input type="text" placeholder="Search..." @change="onChange"/>
+    <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
+    <button class="clear" @click="clearSearch">×</button>
   </nav>
 </template>
 
@@ -10,17 +11,22 @@ import Vue from 'vue';
 import store from '@/store';
 
 export default Vue.extend({
+  data() {
+    return {
+      phrase: '',
+    };
+  },
   methods: {
-    onChange(e: InputEvent) {
-      const element = e.target as HTMLInputElement;
-      const phrase = element.value;
-      console.log('search for', element.value);
-      if (phrase) {
-        store.dispatch('search', phrase);
+    onChange() {
+      if (this.phrase) {
+        store.dispatch('search', this.phrase);
       } else {
         store.commit('SHOW_POOL');
       }
-      // this.$router.push(`/search/${phrase}`);
+    },
+    clearSearch() {
+      this.phrase = '';
+      store.commit('SHOW_POOL');
     },
   },
 });

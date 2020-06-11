@@ -26,13 +26,12 @@ export default Vue.extend({
   name: 'Details',
   data() {
     return {
-      entry: [],
+      entry: {},
     };
   },
   async created() {
-    api.fetchDetails(this.$route.params.id).then((data) => {
+    api.fetchDetails(this.$route.params.id).then((data: object) => {
       this.entry = data;
-      console.log(this.entry._embedded.crew);
     });
   },
 });
