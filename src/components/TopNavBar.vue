@@ -1,8 +1,10 @@
 <template>
   <nav>
     <router-link to="/"><h1>Neatflix</h1></router-link>
-    <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
-    <button class="clear" @click="clearSearch">×</button>
+    <div class="inputs">
+      <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
+      <button class="clear" @click="clearSearch" v-if="phrase">×</button>
+    </div>
   </nav>
 </template>
 
@@ -44,6 +46,11 @@ nav {
     color: rgb(180, 0, 0);
     letter-spacing: 1px;
     font-size: 2rem;
+  }
+  & .inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
