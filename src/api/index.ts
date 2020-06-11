@@ -1,4 +1,4 @@
-const baseURL = 'http://api.tvmaze.com';
+const baseURL = 'https://api.tvmaze.com';
 
 type ListOfShows = {show: Record<string, any>}[];
 type ListFromSearch = Record<string, any>[];
