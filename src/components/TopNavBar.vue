@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/"><h1>Neatflix</h1></router-link>
+    <router-link to="/" class="no-underline"><h1>Neatflix</h1></router-link>
     <div class="inputs">
       <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
       <button class="clear" @click="clearSearch" v-if="phrase">×</button>
@@ -42,6 +42,9 @@ nav {
   top: 0;
   padding: 0 5%;
   z-index: 10;
+  & .no-underline {
+    text-decoration: none;
+  }
   & h1 {
     color: rgb(180, 0, 0);
     letter-spacing: 1px;
