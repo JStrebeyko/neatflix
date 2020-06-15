@@ -1,5 +1,6 @@
 <template>
   <div class="content-container">
+    <spinner v-if="loading" />
     <tile-container v-if="displayed.length" :entries="displayed"/>
   </div>
 </template>
@@ -8,12 +9,14 @@
 import Vue from 'vue';
 import store from '@/store';
 import TileContainer from '@/components/TileContainer.vue';
+import Spinner from '@/components/Spinner.vue';
 import { mapState } from 'vuex';
 
 export default Vue.extend({
   name: 'SearchResults',
   components: {
     TileContainer,
+    Spinner,
   },
   created(): void {
     this.search();
@@ -24,7 +27,7 @@ export default Vue.extend({
     },
   },
   computed: {
-    ...mapState(['displayed']),
+    ...mapState(['displayed', 'loading']),
     phrase(): string {
       return this.$route.params.phrase;
     },

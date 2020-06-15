@@ -4,4 +4,5 @@ export interface Store {
     entryPool: entryList;
     apiPageNum: number;
     displayed: entryList;
+    loading: boolean;
 }

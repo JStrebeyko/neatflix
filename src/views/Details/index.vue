@@ -1,5 +1,6 @@
 <template>
   <div class="details" v-if="entry.name">
+    <spinner v-if="loading" />
     <div class="main-info-wrapper">
     <a @click="$router.go(-1)" class="back-btn">↩️ back</a>
       <h1>{{entry.name}}</h1>
@@ -24,9 +25,14 @@
 <script lang="ts">
 import Vue from 'vue';
 import api from '@/api';
+import { mapState } from 'vuex';
+import Spinner from '@/components/Spinner.vue';
 
 export default Vue.extend({
   name: 'Details',
+  components: {
+    Spinner,
+  },
   data() {
     return {
       entry: {},
@@ -36,6 +42,9 @@ export default Vue.extend({
     api.fetchDetails(this.$route.params.id).then((data: object) => {
       this.entry = data;
     });
+  },
+  computed: {
+    ...mapState(['loading']),
   },
 });
 </script>
