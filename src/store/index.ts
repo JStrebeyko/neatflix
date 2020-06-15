@@ -32,7 +32,7 @@ const store: StoreOptions<Store> = {
   actions: {
     addToShowsList({ commit, state }): void {
       commit('SET_LOADING', true);
-      api.fetchBatch(state.apiPageNum).then((data: any) => {
+      api.fetchBatch(state.apiPageNum).then((data: Array<{}>) => {
         commit('ADD_TO_POOL', data);
         commit('SHOW_POOL');
         commit('INCREMENT_API_PAGE_NUMBER');
@@ -41,7 +41,7 @@ const store: StoreOptions<Store> = {
     },
     search({ commit }, phrase): void {
       commit('SET_LOADING', true);
-      api.fetchSearched(phrase).then((data: any) => {
+      api.fetchSearched(phrase).then((data: Array<{}>) => {
         commit('SHOW_RESULTS', data);
         commit('SET_LOADING', false);
       });
