@@ -2,7 +2,7 @@
   <nav>
     <router-link to="/" class="no-underline"><h1>Neatflix</h1></router-link>
     <div class="inputs">
-      <input type="text" placeholder="Search..." @change="onChange" v-model="phrase"/>
+      <input type="text" placeholder="Search..." @keyup.enter="onChange" v-model="phrase"/>
       <button class="clear" @click="clearSearch" v-if="phrase">×</button>
     </div>
   </nav>
@@ -19,6 +19,9 @@ export default Vue.extend({
   },
   methods: {
     onChange() {
+      if (`/search/${this.phrase}` === this.$route.path) {
+        return;
+      }
       if (this.phrase) {
         this.$router.push(`/search/${this.phrase}`);
       } else {
@@ -27,7 +30,9 @@ export default Vue.extend({
     },
     clearSearch() {
       this.phrase = '';
-      this.$router.push('/');
+      if (this.$route.path !== '/') {
+        this.$router.push('/');
+      }
     },
   },
 });
@@ -52,8 +57,16 @@ nav {
   }
   & .inputs {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    position: relative;
+    & input,
+    & button.clear {
+      align-self: center;
+    }
+    & button.clear {
+      position: absolute;
+      right: 1px;
+    }
   }
 }
 
