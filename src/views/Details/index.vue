@@ -55,6 +55,9 @@ export default Vue.extend({
   & .back-btn {
     left: 0px;
     font-size: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
   }
   background-color: rgb(44, 6, 6);
   color: #fff;
