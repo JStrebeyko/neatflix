@@ -38,9 +38,10 @@ export default Vue.extend({
       entry: {},
     };
   },
-  async created() {
+  created() {
     api.fetchDetails(this.$route.params.id).then((data: object) => {
       this.entry = data;
+      this.$store.commit('SET_LOADING', false);
     });
   },
   computed: {
