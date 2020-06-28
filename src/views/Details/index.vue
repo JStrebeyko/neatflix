@@ -1,11 +1,16 @@
 <template>
   <div class="details" v-if="entry.name">
     <spinner v-if="loading" />
-    <div class="main-info-wrapper">
     <a @click="$router.go(-1)" class="back-btn">↩️ back</a>
-      <h1>{{entry.name}}</h1>
-      <span>Premiered: {{entry.premiered}}</span>
-      <div v-html="entry.summary"></div>
+    <div class="main-info-wrapper">
+      <div class="left">
+        <h1>{{entry.name}}</h1>
+        <span>Premiered: {{entry.premiered}}</span>
+        <article v-html="entry.summary" class="summary"></article>
+      </div>
+      <div class="right">
+        <img :src="entry.image.original" :alt="`${entry.name} poster`" class="poster">
+      </div>
     </div>
     <div class="cast">
       <h2>Cast</h2>
@@ -53,15 +58,60 @@ export default Vue.extend({
 <style lang="scss">
 .details {
   display: block;
+  background-color: rgb(44, 6, 6);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
   & .back-btn {
     left: 0px;
+    top: 100px;
     font-size: 2rem;
+    position: fixed;
     &:hover {
       cursor: pointer;
     }
   }
-  background-color: rgb(44, 6, 6);
-  color: #fff;
-  min-height: 100vh;
+  & .main-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    @media (max-width: 700px) {
+      flex-direction: column;
+      & .left {
+        width: 100%;
+      }
+      & .right {
+        width: 100%;
+      }
+    }
+    & h1 {
+      font-size: 4rem;
+    }
+    & .left {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: center;
+      & .summary {
+        font-size: 2rem;
+        padding: 20px;
+      }
+      @media (max-width: 700px) {
+        width: 100%;
+      }
+    }
+    & .right {
+      width: 50%;
+      & img {
+        width: 75%;
+        @media (max-width: 700px) {
+          width: 100%;
+        }
+      }
+      @media (max-width: 700px) {
+        width: 100%;
+      }
+    }
+  }
 }
 </style>
